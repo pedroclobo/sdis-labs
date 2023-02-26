@@ -30,9 +30,24 @@ enum PlayResult {
 };
 
 // TODO request and response
+message PlayRequest {
+	int32 row = 1;
+	int32 column = 2;
+	int32 player = 3;
+}
 
+message PlayResponse {
+	PlayResult result = 1;
+}
 
 // check winner operation
+message CheckWinnerRequest {
+
+}
+
+message CheckWinnerResponse {
+	int32 winner = 1;
+}
 
 // TODO
 
@@ -41,4 +56,6 @@ enum PlayResult {
 
 service TTT {
 	rpc CurrentBoard(CurrentBoardRequest) returns (CurrentBoardResponse);
+	rpc Play(PlayRequest) returns (PlayResponse);
+	rpc CheckWinner(CheckWinnerRequest) returns (CheckWinnerResponse);
 }

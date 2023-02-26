@@ -15,17 +15,13 @@ Start at contract, then go to server, and finally go to the client.
 
 ## Authors
 
-**Group ...**
+**Group T32**
 
-*(fill-in line above with group identifier e.g. A07 or T22; and then delete this line)*
+99053 [André Torres](mailto:andre.torres@tecnico.ulisboa.pt)
 
-... [...](mailto:...@tecnico.ulisboa.pt)
+99074 [Gonçalo Nunes](mailto:goncaloinunes@tecnico.ulisboa.pt)
 
-... [...](mailto:...@tecnico.ulisboa.pt)
-
-... [...](mailto:...@tecnico.ulisboa.pt)
-
-*(fill-in lines above with student number, name, and email; and then delete this line)*
+99115 [Pedro Lobo](mailto:pedro.lobo@tecnico.ulisboa.pt)
 
 
 ----
