@@ -30,6 +30,9 @@ public class SocketServer {
 		// Create buffered stream to receive data from client, one line at a time
 		BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
+		// Create print stream to send data back to client
+		PrintStream out = new PrintStream(clientSocket.getOutputStream(), true);
+
 		// Receive data until client closes the connection
 		String response;
 		while (true) {
@@ -40,6 +43,9 @@ public class SocketServer {
 				break;
 			}
 			System.out.printf("Received message with content: '%s'%n", response);
+
+			// Send response to client
+			out.printf("Server received message: '%s'%n", response);
 		}
 
 		// Close connection to current client

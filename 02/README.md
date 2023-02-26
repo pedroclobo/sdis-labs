@@ -2,8 +2,8 @@
 
 This is the starting point for exercise on Java Sockets.
 It is composed of two modules:
-- [server](server/) - program that opens a socket and awaits for requests to process
-- [client](client/) - program that opens a connection to the server and sends a request
+- [server](server/) - Program that opens a socket and awaits for requests to process. It then sends a confirmation to the client.
+- [client](client/) - Program that opens a connection to the server and sends a request. It then receives a confirmation from the server.
 
 See the README for each module.
 Start at the [server](server/README.md) and then go to the [client](client/README.md).
@@ -13,17 +13,13 @@ Start at the [server](server/README.md) and then go to the [client](client/READM
 
 ## Authors
 
-**Group ...**
+**Group T32**
 
-*(fill-in line above with group identifier e.g. A07 or T22; and then delete this line)*
+99053 [André Torres](mailto:andre.torres@tecnico.ulisboa.pt)
 
-... [...](mailto:...@tecnico.ulisboa.pt)
+99074 [Gonçalo Nunes](mailto:goncaloinunes@tecnico.ulisboa.pt)
 
-... [...](mailto:...@tecnico.ulisboa.pt)
-
-... [...](mailto:...@tecnico.ulisboa.pt)
-
-*(fill-in lines above with student number, name, and email; and then delete this line)*
+99115 [Pedro Lobo](mailto:pedro.lobo@tecnico.ulisboa.pt)
 
 
 ----

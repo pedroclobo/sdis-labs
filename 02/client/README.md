@@ -1,7 +1,7 @@
 # Socket Client example
 
-This example demonstrates the use of sockets in the Java platform.  
-The client connects to the server, sends a line of text, and terminates.
+This example demonstrates the use of sockets in the Java platform.
+The client connects to the server, sends a line of text, receives a confirmation from the server and terminates.
 The host and port to connect to are defined as arguments.
 The text to send is also defined as argument to the program.
 
@@ -17,7 +17,7 @@ mvn compile
 To run using _exec_ plugin:
 
 ```
-mvn exec:java
+mvn exec:java -Dexec.args="localhost 8001 hello"
 ```
 
 
