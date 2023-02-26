@@ -2,6 +2,7 @@ package pt.tecnico.ttt.client;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import io.grpc.StatusRuntimeException;
 import pt.tecnico.ttt.*;
 import pt.tecnico.ttt.PlayResult;
 
@@ -63,7 +64,7 @@ public class TTTClient {
 		int row = 0; /* Row index for a square */
 		int column = 0; /* Column index for a square */
 		int winner = -1; /* The winning player */
-		PlayResult play_res;
+		PlayResult play_res = null;
 
 		/*
 		 * Using try with scanner - ensures the resource is closed in the end, even if
@@ -99,10 +100,15 @@ public class TTTClient {
 					debug("row = " + row + ", column = " + column);
 
 					// TODO call play and set the proper play result
-					play_res = stub.play(PlayRequest.newBuilder().setRow(row).setColumn(column).setPlayer(player).build()) .getResult();
-					if (play_res != PlayResult.SUCCESS) {
-						displayResult(play_res);
+					try {
+						play_res = stub.play(PlayRequest.newBuilder().setRow(row).setColumn(column).setPlayer(player).build()) .getResult();
+						if (play_res != PlayResult.SUCCESS) {
+							displayResult(play_res);
+						}
+					} catch (StatusRuntimeException e) {
+						System.out.println("Caught exception with description: " + e.getStatus().getDescription());
 					}
+
 
 				} while (play_res != PlayResult.SUCCESS);
 
