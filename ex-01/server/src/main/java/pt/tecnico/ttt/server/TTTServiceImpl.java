@@ -50,4 +50,13 @@ public class TTTServiceImpl extends TTTGrpc.TTTImplBase {
 		responseObserver.onCompleted();
 	}
 
+	@Override
+	public synchronized void changePlayer(ChangePlayerRequest request, StreamObserver<ChangePlayerResponse> responseObserver) {
+		ttt.changePlayer();
+		ChangePlayerResponse response = ChangePlayerResponse.newBuilder().build();
+		responseObserver.onNext(response);
+
+		// Notify the client that the operation has been completed.
+		responseObserver.onCompleted();
+	}
 }

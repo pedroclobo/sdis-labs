@@ -10,7 +10,11 @@ public class TTTGame {
 	public TTTGame() {
 		this.resetBoard();
 	}
-	
+
+	public void changePlayer() {
+		nextPlayer = (nextPlayer + 1) % 2;
+	}
+
 	@Override
 	public synchronized String toString() {
 		return String.format( "\n\n %c | %c | %c\n---+---+---\n %c | %c | %c\n---+---+---\n %c | %c | %c\n ",
