@@ -54,8 +54,17 @@ message CheckWinnerResponse {
 
 // service
 
+message ChangePlayerRequest {
+
+}
+
+message ChangePlayerResponse {
+
+}
+
 service TTT {
 	rpc CurrentBoard(CurrentBoardRequest) returns (CurrentBoardResponse);
 	rpc Play(PlayRequest) returns (PlayResponse);
 	rpc CheckWinner(CheckWinnerRequest) returns (CheckWinnerResponse);
+	rpc ChangePlayer(ChangePlayerRequest) returns (ChangePlayerResponse);
 }
