@@ -3,6 +3,7 @@ package pt.tecnico.addressbook.server.domain;
 import pt.tecnico.addressbook.grpc.AddressBookList;
 import pt.tecnico.addressbook.grpc.PersonInfo.PhoneType;
 import pt.tecnico.addressbook.server.domain.exception.DuplicatePersonInfoException;
+import pt.tecnico.addressbook.server.domain.exception.PersonNotFoundException;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
@@ -18,6 +19,14 @@ public class AddressBook {
 		if(people.putIfAbsent(email, new Person(name, email, phoneNumber, type)) != null) {
 			throw new DuplicatePersonInfoException(email);
 		}
+	}
+
+	public Person searchPerson(String email) {
+		if (!people.containsKey(email)) {
+			throw new PersonNotFoundException(email);
+		}
+
+		return people.get(email);
 	}
 
 	public AddressBookList proto() {
