@@ -24,7 +24,7 @@ public class AddressBookServiceImpl extends AddressBookServiceImplBase {
 	@Override
 	public void addPerson(PersonInfo request, StreamObserver<AddPersonResponse> responseObserver) {
 		try {
-			addressBook.addPerson(request.getName(), request.getEmail(), request.getPhone().getNumber(), request.getPhone().getType());
+			addressBook.addPerson(request.getName(), request.getEmail(), request.getPhone().getNumber(), request.getPhone().getType(), request.getWebsite());
 			AddPersonResponse response = AddPersonResponse.getDefaultInstance();
 			responseObserver.onNext(response);
 			responseObserver.onCompleted();
@@ -46,5 +46,16 @@ public class AddressBookServiceImpl extends AddressBookServiceImplBase {
 		} catch (PersonNotFoundException e) {
 			responseObserver.onError(INVALID_ARGUMENT.withDescription(e.getMessage()).asRuntimeException());
 		}
+	}
+
+	@Override
+	public void listAll(ListAllRequest request, StreamObserver<AddressBookList> responseObserver) {
+		AddressBookList.Builder response = AddressBookList.newBuilder();
+
+		for (Person person : addressBook.listAll(request.getWebsite())) {
+			response.addPeople(person.proto());
+		}
+		responseObserver.onNext(response.build());
+		responseObserver.onCompleted();
 	}
 }

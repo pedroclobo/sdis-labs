@@ -49,6 +49,7 @@ class PythonClient(object):
 		person = pb2.PersonInfo()
 		person.name = input("Enter name: ")
 		person.email = input("Enter email: ")
+		person.website = input("Enter website: ")
 
 		type = input("Enter phone type: [mobile/home/work] ")
 		if type == "mobile":
@@ -82,6 +83,17 @@ class PythonClient(object):
 		except grpc.RpcError as rpc_error:
 			print('ERROR: code={}, description={}'.format(rpc_error.code(), rpc_error.details()))
 
+	def list_all(self):
+		request = pb2.ListAllRequest()
+		request.website = input("Enter website: ")
+
+		try:
+			for person in self.stub.listAll(request).people:
+				print_person(person)
+
+		except grpc.RpcError as rpc_error:
+			print('ERROR: code={}, description={}'.format(rpc_error.code(), rpc_error.details()))
+
 
 def print_person(person):
 	"""
@@ -97,6 +109,7 @@ def print_person(person):
 	elif person.phone.type == pb2.PersonInfo.PhoneType.WORK:
 		print("  Work phone #: ", end="")
 	print(person.phone.number)
+	print("  Website:", person.website)
 
 
 def get_user_choice():
@@ -106,6 +119,7 @@ def get_user_choice():
 	print("\n[1] See a list of addresses.")
 	print("[2] Add person's address.")
 	print("[3] Search person's address.")
+	print("[5] List all person with website.")
 	print("[q] Quit.")
 
 	return input("What would you like to do? ")
@@ -126,6 +140,8 @@ if __name__ == '__main__':
 			client.add_person()
 		elif choice == '3':
 			client.search_person()
+		elif choice == '5':
+			client.list_all()
 		elif choice == 'q':
 			print("\nBye.")
 		else:

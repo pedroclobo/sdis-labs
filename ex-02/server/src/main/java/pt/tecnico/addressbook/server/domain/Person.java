@@ -8,12 +8,14 @@ public class Person {
 	private String email;
 	private int phoneNumber;
 	private PhoneType type;
+	private String website;
 
-	public Person(String name, String email, int phoneNumber, PhoneType type) {
+	public Person(String name, String email, int phoneNumber, PhoneType type, String website) {
 		this.name = name;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.type = type;
+		this.website = website;
 	}
 
 	public String getName() {
@@ -48,9 +50,17 @@ public class Person {
 		this.type = type;
 	}
 
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
 	public PersonInfo proto() {
 		PersonInfo.PhoneNumber phone = PersonInfo.PhoneNumber.newBuilder().setNumber(phoneNumber).setType(type).build();
-		return PersonInfo.newBuilder().setName(name).setEmail(email).setPhone(phone).build();
+		return PersonInfo.newBuilder().setName(name).setEmail(email).setPhone(phone).setWebsite(website).build();
 	}
 
 	@Override
@@ -60,6 +70,7 @@ public class Person {
 				", email='" + email + '\'' +
 				", phoneNumber=" + phoneNumber +
 				", type=" + type +
+				", website=" + website +
 				'}';
 	}
 }

@@ -8,6 +8,9 @@ import pt.tecnico.addressbook.server.domain.exception.PersonNotFoundException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class AddressBook {
 
 	private ConcurrentHashMap<String, Person> people = new ConcurrentHashMap<>();
@@ -15,8 +18,8 @@ public class AddressBook {
 	public AddressBook() {
 	}
 
-	public void addPerson(String name, String email, int phoneNumber, PhoneType type) throws DuplicatePersonInfoException {
-		if(people.putIfAbsent(email, new Person(name, email, phoneNumber, type)) != null) {
+	public void addPerson(String name, String email, int phoneNumber, PhoneType type, String website) throws DuplicatePersonInfoException {
+		if(people.putIfAbsent(email, new Person(name, email, phoneNumber, type, website)) != null) {
 			throw new DuplicatePersonInfoException(email);
 		}
 	}
@@ -27,6 +30,18 @@ public class AddressBook {
 		}
 
 		return people.get(email);
+	}
+
+	public List<Person> listAll(String website) {
+		List<Person> pp = new ArrayList<>();
+
+		for (Person person : people.values()) {
+			if (person.getWebsite().equals(website)) {
+				pp.add(person);
+			}
+		}
+
+		return pp;
 	}
 
 	public AddressBookList proto() {
